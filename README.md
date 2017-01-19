@@ -1,3 +1,4 @@
+![alt text](https://github.com/alerdenisov/ReUI/raw/master/Resources/Logotype500.png "Logo Title Text 1")
 # ReUI - Unity declarative UI system based on XML and LUA
 
 ## Core features
