@@ -11,15 +11,16 @@
 ReUI is in active development stage as a part of huge open-source project. ReUI required [Rentitas](https://github.com/alerdenisov/Rentitas) to work. ReUI written on C# 6 and require external compiler (such as [IncrementCompiler](https://github.com/SaladLab/Unity3D.IncrementalCompiler))
 
 ## Documentation and Tutorials
-[API Reference](https://github.com/SmallPlanetUnity/PlanetUnity2/blob/master/Documentation/TableOfContents.md)
-[Documentation](https://github.com/SmallPlanetUnity/PlanetUnity2/blob/master/Documentation/TableOfContents.md)
-[Tutorials](https://github.com/SmallPlanetUnity/PlanetUnity2/blob/master/Documentation/TableOfContents.md)
-[Examples](https://github.com/SmallPlanetUnity/PlanetUnity2/blob/master/Documentation/TableOfContents.md)
+[API Reference](https://github.com/alerdenisov/ReUI/wiki)
+[Documentation](https://github.com/alerdenisov/ReUI/wiki)
+[Tutorials](https://github.com/alerdenisov/ReUI/wiki)
+[Examples](https://github.com/alerdenisov/ReUI/wiki)
 
 ## Roadmap
-- [ ] XML caching ([read more..](https://github.com))
-- [ ] Animations ([read more..](https://github.com))
-- [ ] UI Variables pool ([read more..](https://github.com))
+- [ ] XML caching ([read more..](https://github.com/alerdenisov/ReUI/issues/1)
+- [ ] Element shared styles ([read more..](https://github.com/alerdenisov/ReUI/issues/3)
+- [ ] Animations ([read more..](https://github.com/alerdenisov/ReUI/issues/2)
+- [ ] UI Variables pool ([read more..](https://github.com/alerdenisov/ReUI/issues/4)
 
 ## Limitation and Bugs
 - Not found yet.. but it doesn't mean that they're not exists :D
