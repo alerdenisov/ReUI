@@ -5,6 +5,14 @@ namespace ReUI.Api
 {
     public static class UICreationExtensions 
     {
+        public static Entity<IUIPool> CreateEmbed(this Pool<IUIPool> @this, string key)
+        {
+            var embed = @this.CreateEntity();
+            var component = embed.CreateComponent<Embed>();
+            component.Name = key;
+            embed.AddInstance(component);
+            return embed;
+        }
         public static Entity<IUIPool> CreateRoot(this Pool<IUIPool> @this)
         {
             var root = @this.CreateScope(0);
