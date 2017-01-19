@@ -1,4 +1,4 @@
-![alt text](https://github.com/alerdenisov/ReUI/raw/master/Resources/Logotype500.png "Logo Title Text 1")
+![alt text](https://raw.githubusercontent.com/alerdenisov/ReUI/master/Resources/reui-logo-200.png "ReUI Rentitas module for UI")
 # ReUI - Unity declarative UI system based on XML and LUA
 
 ## Core features
