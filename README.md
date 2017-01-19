@@ -17,10 +17,10 @@ ReUI is in active development stage as a part of huge open-source project. ReUI 
 [Examples](https://github.com/alerdenisov/ReUI/wiki)
 
 ## Roadmap
-- [ ] XML caching ([read more..](https://github.com/alerdenisov/ReUI/issues/1)
-- [ ] Element shared styles ([read more..](https://github.com/alerdenisov/ReUI/issues/3)
-- [ ] Animations ([read more..](https://github.com/alerdenisov/ReUI/issues/2)
-- [ ] UI Variables pool ([read more..](https://github.com/alerdenisov/ReUI/issues/4)
+- [ ] XML caching ([read more..](https://github.com/alerdenisov/ReUI/issues/1))
+- [ ] Element shared styles ([read more..](https://github.com/alerdenisov/ReUI/issues/3))
+- [ ] Animations ([read more..](https://github.com/alerdenisov/ReUI/issues/2))
+- [ ] UI Variables pool ([read more..](https://github.com/alerdenisov/ReUI/issues/4))
 
 ## Limitation and Bugs
 - Not found yet.. but it doesn't mean that they're not exists :D
