@@ -27,7 +27,10 @@ namespace ReUI.Implementation
             OnClick,
 
             Collection,
-            Itteration
+            Itteration,
+
+            Property,
+            Children
         }
 
         public static Dictionary<string, ExtraElementNode> _extraElementNodesDictionary = new Dictionary<string, ExtraElementNode>
@@ -44,7 +47,10 @@ namespace ReUI.Implementation
             { "OnMouseRelease", ExtraElementNode.OnMouseRelease},
             { "OnClick", ExtraElementNode.OnClick},
             { "Collection", ExtraElementNode.Collection},
-            { "Itteration", ExtraElementNode.Itteration}
+            { "Itteration", ExtraElementNode.Itteration},
+            { "Props", ExtraElementNode.Property},
+            { "Children", ExtraElementNode.Children},
+
         };
 
         public void Execute(List<Entity<IUIPool>> entities)
@@ -98,15 +104,25 @@ namespace ReUI.Implementation
             foreach (var extraNode in node.SubNodes.Where(child => _extraElementNodesDictionary.ContainsKey(child.Name)))
             {
                 var extraType = _extraElementNodesDictionary[extraNode.Name];
-                switch (extraType)
+                if (extraType == ExtraElementNode.Children)
                 {
-                    // test feature comment 
-                    case ExtraElementNode.Content:
-                        xmlElement.Content = extraNode.Value ?? "";
-                        break;
-                    default:
-                        xmlElement.Attributes.Add(extraNode.Name, extraNode.Value ?? extraNode.Attributes.First(a => a.Name == "Value").Value);//["Value"]);
-                        break;
+                    // TODO: collect whole hierarhy to element
+                }
+                else
+                {
+                    var value = extraNode.Value;
+                    if (string.IsNullOrEmpty(value))
+                        value = extraNode.Attributes.First(a => a.Name == "Value").Value;
+                    xmlElement.Attributes.Add(extraNode.Name, value);
+    //                switch (extraType)
+    //                {
+    //                    case ExtraElementNode.Content:
+    //                        xmlElement.Content = extraNode.Value ?? "";
+    //                        break;
+    //                    default:
+    //                        xmlElement.Attributes.Add(extraNode.Name, extraNode.Value ?? extraNode.Attributes.First(a => a.Name == "Value").Value);//["Value"]);
+    //                        break;
+    //                }   
                 }
             }
 
