@@ -20,5 +20,7 @@ namespace ReUI.Api
 
         bool InScene();
         GameObject GetObject();
+
+        void SetParent(IView parentView);
     }
 }
