@@ -35,7 +35,7 @@ namespace ReUI.Implementation
             }
 
             var docComponent = xmlEntity.CreateComponent<XmlDocument>();
-            docComponent.Value = document;
+            docComponent.Root = document.RootNode;
 
             xmlEntity.AddInstance(docComponent);
         }
