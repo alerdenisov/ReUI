@@ -23,7 +23,7 @@ namespace ReUI.Api
         /// <summary>
         /// Instance of readed xml file
         /// </summary>
-        public IXmlDocument Value;
+        public IXmlNode Root;
     }
 
     /// <summary>
