@@ -100,6 +100,7 @@ namespace ReUI.Implementation
                 var extraType = _extraElementNodesDictionary[extraNode.Name];
                 switch (extraType)
                 {
+                    // test feature comment 
                     case ExtraElementNode.Content:
                         xmlElement.Content = extraNode.Value ?? "";
                         break;
