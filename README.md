@@ -20,10 +20,12 @@ ReUI is in active development stage as a part of huge open-source project. ReUI 
 ### Milestone [0.1](https://github.com/alerdenisov/ReUI/milestone/1)
 - [ ] Nested hierarchy ([read more..](https://github.com/alerdenisov/ReUI/issues/6))
 - [ ] Reactive UI variables ([read more..](https://github.com/alerdenisov/ReUI/issues/4))
+
 ### Milestone [0.2](https://github.com/alerdenisov/ReUI/milestone/2)
 - [ ] XML caching ([read more..](https://github.com/alerdenisov/ReUI/issues/1))
 - [ ] Form elements ([read more..](https://github.com/alerdenisov/ReUI/issues/7))
 - [ ] Auto size fitters ([read more..](https://github.com/alerdenisov/ReUI/issues/5))
+
 ### Milestone [0.3](https://github.com/alerdenisov/ReUI/milestone/3)
 - [ ] Element styles ([read more..](https://github.com/alerdenisov/ReUI/issues/3))
 - [ ] Animations ([read more..](https://github.com/alerdenisov/ReUI/issues/2))
