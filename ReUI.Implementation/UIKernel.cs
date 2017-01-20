@@ -79,6 +79,8 @@ namespace ReUI.Implementation
                 .Add(uiPool.CreateSystem(new SetupTextFontSizeSystem()))
                 .Add(uiPool.CreateSystem(new SetupTextLineHeightSystem()))
                 .Add(uiPool.CreateSystem(new SetupTextAlignmentSystem()))
+
+                .Add(uiPool.CreateSystem(new SetupNestedHierarchySystem()))
                 ;
         }
 
@@ -164,6 +166,7 @@ namespace ReUI.Implementation
         {
             return new Scenario("Update systems")
                 // Update attributes
+                .Add(uiPool.CreateSystem(new UpdateElementParentSystem()))
                 .Add(uiPool.CreateSystem(new UpdateElementTypeSystem()))
                 .Add(uiPool.CreateSystem(new UpdateElementRectSystem()))
                 .Add(uiPool.CreateSystem(new UpdateElementPositionSystem()))

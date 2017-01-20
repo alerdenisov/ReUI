@@ -12,7 +12,7 @@ namespace ReUI.Implementation
         protected abstract Type[] AttributeTypes { get; }
         protected virtual Type[] EnsureTypes => new Type[0];
 
-        protected IViewProvider _viewPool;
+        protected IViewProvider ViewPool;
         private HashSet<Entity<IUIPool>> _awaiting = new HashSet<Entity<IUIPool>>();
 
         public void Execute(List<Entity<IUIPool>> entities)
@@ -33,7 +33,7 @@ namespace ReUI.Implementation
             }
 
             var link = entity.Get<ViewLink>();
-            var view = _viewPool.GetByIdentity(link.Id);
+            var view = ViewPool.GetByIdentity(link.Id);
 
             if (!view.InScene())
             {
@@ -61,7 +61,7 @@ namespace ReUI.Implementation
 
         public virtual void SetPool(Pool<IUIPool> pool)
         {
-            _viewPool = pool.Get<ViewProvider>().Value;
+            ViewPool = pool.Get<ViewProvider>().Value;
         }
     }
 }

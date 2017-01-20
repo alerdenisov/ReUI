@@ -27,7 +27,10 @@ namespace ReUI.Implementation
             OnClick,
 
             Collection,
-            Itteration
+            Itteration,
+
+            Property,
+//            Children,
         }
 
         public static Dictionary<string, ExtraElementNode> _extraElementNodesDictionary = new Dictionary<string, ExtraElementNode>
@@ -44,21 +47,23 @@ namespace ReUI.Implementation
             { "OnMouseRelease", ExtraElementNode.OnMouseRelease},
             { "OnClick", ExtraElementNode.OnClick},
             { "Collection", ExtraElementNode.Collection},
-            { "Itteration", ExtraElementNode.Itteration}
+            { "Itteration", ExtraElementNode.Itteration},
+            { "Props", ExtraElementNode.Property},
+//            { "Children", ExtraElementNode.Children},
+
         };
 
         public void Execute(List<Entity<IUIPool>> entities)
         {
             foreach (var xmlDocument in entities)
             {
-                ParseDocument(xmlDocument, xmlDocument.Get<XmlDocument>().Value);
+                ParseDocument(xmlDocument, xmlDocument.Get<XmlDocument>().Root);
             }
         }
 
-        private void ParseDocument(Entity<IUIPool> embedEntity, IXmlDocument value)
+        private void ParseDocument(Entity<IUIPool> embedEntity, IXmlNode root)
         {
-            var root = value.RootNode;
-            if (root.Name != "Root")
+            if (root.Name != "Root" && root.Name != "Children")
             {
                 Debug.LogError("Incorrect xml. Each ui xml must starts with Root node");
                 return;
@@ -95,19 +100,14 @@ namespace ReUI.Implementation
             xmlElement.Attributes = node.Attributes.ToDictionary(a => a.Name, a => a.Value);
             xmlElement.Content = node.Value;
 
-            foreach (var extraNode in node.SubNodes.Where(child => _extraElementNodesDictionary.ContainsKey(child.Name)))
+            foreach (var extraNode in node.SubNodes.Where(child => _extraElementNodesDictionary.ContainsKey(child.Name))
+                )
             {
                 var extraType = _extraElementNodesDictionary[extraNode.Name];
-                switch (extraType)
-                {
-                    // test feature comment 
-                    case ExtraElementNode.Content:
-                        xmlElement.Content = extraNode.Value ?? "";
-                        break;
-                    default:
-                        xmlElement.Attributes.Add(extraNode.Name, extraNode.Value ?? extraNode.Attributes.First(a => a.Name == "Value").Value);//["Value"]);
-                        break;
-                }
+                var value = extraNode.Value;
+                if (string.IsNullOrEmpty(value))
+                    value = extraNode.Attributes.FirstOrDefault(a => a.Name == "Value")?.Value;
+                xmlElement.Attributes.Add(extraNode.Name, value);
             }
 
             element.AddInstance(xmlElement);

@@ -53,5 +53,10 @@ namespace ReUI.Integrations.View
         {
             return gameObject;
         }
+
+        public void SetParent(IView parentView)
+        {
+            GetObject()?.transform.SetParent(parentView.GetObject()?.transform, false);
+        }
     }
 }

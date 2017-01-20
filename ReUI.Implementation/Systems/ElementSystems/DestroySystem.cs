@@ -43,7 +43,7 @@ namespace ReUI.Implementation
 //                    continue;
 
 //                var id = entity.Get<ViewLink>().Id;
-//                _viewPool.GetByIdentity(id)?.Destroy();
+//                ViewPool.GetByIdentity(id)?.Destroy();
             }
             
         }
