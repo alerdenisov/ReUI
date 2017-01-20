@@ -31,8 +31,8 @@ ReUI is in active development stage as a part of huge open-source project. ReUI 
 - [ ] Animations ([read more..](https://github.com/alerdenisov/ReUI/issues/2))
 
 ## Limitation and Bugs
-- Not found yet.. but it doesn't mean that they're not exists :D
-- Found one? Tell us via [issue](https://github.com/alerdenisov/ReUI/issues/new)
+Not found yet.. but it doesn't mean that they're not exists :D
+Found one? Tell us via [issue](https://github.com/alerdenisov/ReUI/issues/new)
 
 ## Contributing to ReUI
 The project is hosted on GitHub where you can [report issues](https://github.com/alerdenisov/ReUI/issues), fork the project and [submit pull requests](https://github.com/alerdenisov/ReUI/pulls).
