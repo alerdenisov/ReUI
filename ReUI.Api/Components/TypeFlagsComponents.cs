@@ -13,7 +13,9 @@ namespace ReUI.Api
         Sprite,
         RawImage,
         Text,
-        Loop
+        Loop,
+        Hierarchy,
+        Children
     }
 
     /// <summary>
@@ -50,4 +52,14 @@ namespace ReUI.Api
     /// Flag of elements contains lua logics
     /// </summary>
     public class LuaType : ILuaComponent, IFlag { }
+
+    /// <summary>
+    /// Flag of container for injection hierarchy scope
+    /// </summary>
+    public class ChildrenType : IViewComponent, IFlag { }
+
+    /// <summary>
+    /// Flag of container for injected hierarchy
+    /// </summary>
+    public class HierarchyType : IViewComponent, IFlag { }
 }
