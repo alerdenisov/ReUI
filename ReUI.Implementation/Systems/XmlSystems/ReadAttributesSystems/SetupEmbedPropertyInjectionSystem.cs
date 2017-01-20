@@ -11,13 +11,16 @@ namespace ReUI.Implementation.Systems
 
         protected override void SetupFor(Entity<IUIPool> entity, XmlElement xml)
         {
+            var value = "return {}";
+            
             if (!string.IsNullOrEmpty(xml.Content) && xml.Content.Contains("return"))
-                entity.SetAttribute<LuaCodePropertiesInjection, string>(xml.Content);
-            else if(xml.HasAttribute("Value"))
-                entity.SetAttribute<LuaCodePropertiesInjection, string>(xml.Attributes["Value"]);
-            else
-                entity.SetAttribute<LuaCodePropertiesInjection, string>("return {}");
+                value = xml.Content;
+            else if (xml.HasAttribute("Value"))
+                value = xml.Attributes["Value"];
+            else if (xml.HasAttribute("Props"))
+                value = xml.Attributes["Props"];
 
+            entity.SetAttribute<LuaCodePropertiesInjection, string>(value);
             entity.Add<LuaCode>(code => code.Value.Reset());
             entity.Toggle<LuaType>(true);
         }

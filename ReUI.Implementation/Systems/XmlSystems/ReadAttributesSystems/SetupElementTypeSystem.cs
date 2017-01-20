@@ -9,23 +9,27 @@ namespace ReUI.Implementation
         public static HashSet<string> _standardElements = new HashSet<string>
         {
             "Root",
+            "Children",
             "GameObject",
             "Color",
             "Image",
             "Text",
             "Texture",
-            "Loop"
+            "Loop",
+            "Hierarchy",
         };
 
         public static Dictionary<string, Elements> _standardTypes = new Dictionary<string, Elements>()
         {
             {"Root",        Elements.Root},
+            {"Children",    Elements.Children},
             {"GameObject",  Elements.GameObject},
             {"Color",       Elements.Sprite},
             {"Image",       Elements.Sprite},
             {"Text",        Elements.Text},
             {"Texture",     Elements.RawImage},
-            {"Loop",        Elements.Loop}  
+            {"Loop",        Elements.Loop},  
+            {"Hierarchy",   Elements.Hierarchy}
 
         };
 
@@ -56,11 +60,13 @@ namespace ReUI.Implementation
 
 
             return element
-                .Toggle<ScopeType>(type == Elements.Root)
+                .Toggle<ScopeType>(type == Elements.Root || type == Elements.Children)
                 .Toggle<LoopType>(type == Elements.Loop)
                 .Toggle<TextureType>(type == Elements.RawImage)
                 .Toggle<SpriteType>(type == Elements.Sprite)
                 .Toggle<TextType>(type == Elements.Text)
+                .Toggle<HierarchyType>(type == Elements.Hierarchy)
+                .Toggle<ChildrenType>(type == Elements.Children)
                 .ReplaceInstance(viewType);
         }
 
