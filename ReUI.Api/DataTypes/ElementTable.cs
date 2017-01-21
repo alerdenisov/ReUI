@@ -114,5 +114,12 @@ namespace ReUI.Api
         {
             Element.SetAttribute<Text, string>(content);
         }
+
+        public void setAlignment(string value)
+        {
+            TextAnchor anchor = TextAnchor.LowerCenter;
+            if (EnumConverter<TextAnchor>.Convert(value, ref anchor))
+                Element.SetAttribute<TextAlignment, TextAnchor>(anchor);
+        }
     }
 }
