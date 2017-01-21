@@ -15,7 +15,6 @@ namespace ReUI.Implementation.Systems
         {
             foreach (var entity in entities)
             {
-                Debug.Log($"Execute loop for {entity.GetAttribute<Name, string>()}");
                 var id = entity.Get<Element>().Id;
                 var methods = entity.Get<LuaLooperMethods>();
                 var collection = _lua.ToTable(methods.GetCollection());
