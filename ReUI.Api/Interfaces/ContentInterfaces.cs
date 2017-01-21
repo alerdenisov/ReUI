@@ -2,14 +2,21 @@
 
 namespace ReUI.Api
 {
-    public delegate void ContentReceiveSuccessHandler<T>(string path, T content);
-    public delegate void ContentReceiveErrorHandler(string path, Exception e);
-
-    public interface IContentProvider {
-        void Request<T>(string path, ContentReceiveSuccessHandler<T> onSuccess);
-        void Request<T>(string path, ContentReceiveSuccessHandler<T> onSuccess, ContentReceiveErrorHandler onError);
-        T Get<T>(string key);
+    public struct ContentReceiveResult<T>
+    {
+        public bool Error;
+        public string ErrorMessage;
+        public T Data;
     }
 
-    public interface IContent { }
+    public delegate void ContentReceiveHandler<T>(string path, ContentReceiveResult<T> onResult);
+
+    public interface IContentProvider
+    {
+        void RequestXml(string key, ContentReceiveHandler<string> onResult);
+        void RequestSprite(string key, ContentReceiveHandler<UnityEngine.Sprite> onResult);
+        void RequestFont(string key, ContentReceiveHandler<UnityEngine.Font> onResult);
+        void RequestAudio(string key, ContentReceiveHandler<UnityEngine.AudioClip> onResult);
+        void RequestTexture(string key, ContentReceiveHandler<UnityEngine.Texture> onResult);
+    }
 }
