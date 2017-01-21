@@ -17,13 +17,12 @@ namespace ReUI.Implementation
             {
                 var path = entity.Get<Embed>().Name;
 
-                // TODO: Move to pool object (maybe special pool?)
-                _contentProvider.Request(path, delegate(string k, string content)
+                _contentProvider.RequestXml(path, delegate(string k, ContentReceiveResult<string> result)
                 {
-                    entity.Add<XmlData>(doc => doc.Value = content);
-                }, delegate(string p, Exception exception)
-                {
-                    Debug.LogError($"Error on request content at {p}: " + exception);
+                    if (!result.IsError)
+                        entity.Add<XmlData>(doc => doc.Value = result.Data);
+                    else
+                        Debug.LogError(result.ErrorMessage);
                 });
             }
         }

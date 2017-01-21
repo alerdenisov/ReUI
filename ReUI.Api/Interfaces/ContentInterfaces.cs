@@ -4,9 +4,30 @@ namespace ReUI.Api
 {
     public struct ContentReceiveResult<T>
     {
-        public bool Error;
-        public string ErrorMessage;
-        public T Data;
+        public bool IsError => !string.IsNullOrEmpty(ErrorMessage);
+        public string ErrorMessage { get; private set; }
+        public T Data { get; private set; }
+        
+        public static ContentReceiveResult<T> Error(string message = null)
+        {
+            if (message == null)
+                message = "Unknown error";
+
+            var result = new ContentReceiveResult<T>();
+            result.ErrorMessage = message;
+
+            return result;
+        }
+
+        public static ContentReceiveResult<T> Success(T data)
+        {
+            var result = new ContentReceiveResult<T>();
+            result.ErrorMessage = null;
+            result.Data = data;
+
+            return result;
+
+        }
     }
 
     public delegate void ContentReceiveHandler<T>(string path, ContentReceiveResult<T> onResult);

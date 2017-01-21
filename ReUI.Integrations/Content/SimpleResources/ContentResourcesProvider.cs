@@ -1,55 +1,47 @@
 ﻿using System;
 using ReUI.Api;
 using UnityEngine;
+using Font = UnityEngine.Font;
+using Sprite = UnityEngine.Sprite;
+using Texture = UnityEngine.Texture;
 
 namespace ReUI.Integrations.Content
 {
     public class ContentResourcesProvider : IContentProvider
     {
-        public void Request<T>(string path, ContentReceiveSuccessHandler<T> onSuccess)
+        public void RequestXml(string key, ContentReceiveHandler<string> onResult)
         {
-            Request(path, onSuccess, null);
+            var xmlAsset = Resources.Load<TextAsset>(key);
+            onResult(key, ContentReceiveResult<string>.Success(xmlAsset.text));
         }
 
-        public void Request<T>(string path, ContentReceiveSuccessHandler<T> onSuccess, ContentReceiveErrorHandler onError)
+        private void GenericRequest<T>(string key, ContentReceiveHandler<T> onResult) where T : UnityEngine.Object
         {
-            try
-            {
-                var content = Get<T>(path);
-                onSuccess(path, content);
-            }
-            catch(Exception e)
-            {
-                if (onError != null)
-                    onError(path, e);
-                else
-                {
-                    Debug.LogError($"Content {path} request failded: {e}");
-                }
-            }
+            var asset = Resources.Load<T>(key);
+            if (asset == null)
+                onResult(key, ContentReceiveResult<T>.Error($"Content ({key}) not found"));
+            else
+                onResult(key, ContentReceiveResult<T>.Success(asset));
         }
 
-        public T Get<T>(string key) //where T : IConvertible
+        public void RequestSprite(string key, ContentReceiveHandler<Sprite> onResult)
         {
-            try
-            {
-                if (typeof (T) == typeof (string))
-                {
-                    return (T) Convert.ChangeType(Resources.Load<TextAsset>(key).text, typeof (T));
-                }
+            GenericRequest(key, onResult);
+        }
 
-                if (typeof (UnityEngine.Object).IsAssignableFrom(typeof (T)))
-                {
-                    return (T) Convert.ChangeType(Resources.Load(key, typeof (T)), typeof (T));
+        public void RequestFont(string key, ContentReceiveHandler<Font> onResult)
+        {
+            GenericRequest(key, onResult);
+        }
 
-                }
-            }
-            catch (Exception e)
-            {
-                Debug.LogError($"Content {key} request failded: {e}" );
-            }
+        public void RequestAudio(string key, ContentReceiveHandler<AudioClip> onResult)
+        {
+            GenericRequest(key, onResult);
+        }
 
-            throw new ArgumentException($"Not supported type {typeof(T)}");
+        public void RequestTexture(string key, ContentReceiveHandler<Texture> onResult)
+        {
+            GenericRequest(key, onResult);
         }
     }
 }

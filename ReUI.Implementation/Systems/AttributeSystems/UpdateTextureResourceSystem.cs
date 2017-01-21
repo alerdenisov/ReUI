@@ -20,9 +20,12 @@ namespace ReUI.Implementation
         protected override void SetupAttribute(Entity<IUIPool> uiEntity, IView view, GameObject go)
         {
             var path = uiEntity.GetAttribute<Resource, string>();
-            _contentPool.Request<RenderTexture>(path, delegate(string p, RenderTexture content)
+            _contentPool.RequestTexture(path, delegate(string p,ContentReceiveResult<Texture> result)
             {
-                go.GetComponent<RawImage>().texture = content;
+                if (!result.IsError)
+                    go.GetComponent<RawImage>().texture = result.Data;
+                else
+                    Debug.LogError(result.ErrorMessage);
             });
         }
 

@@ -15,9 +15,12 @@ namespace ReUI.Implementation
         protected override void SetupAttribute(Entity<IUIPool> uiEntity, IView view, GameObject go)
         {
             var path = uiEntity.GetAttribute<Resource, string>();
-            _contentPool.Request<UnityEngine.Font>(path, delegate (string p, UnityEngine.Font content)
+            _contentPool.RequestFont(path, delegate (string p, ContentReceiveResult<UnityEngine.Font> result)
             {
-                go.GetComponent<UnityEngine.UI.Text>().font = content;
+                if (!result.IsError)
+                    go.GetComponent<UnityEngine.UI.Text>().font = result.Data;
+                else
+                    Debug.LogError(result.ErrorMessage);
             });
         }
 

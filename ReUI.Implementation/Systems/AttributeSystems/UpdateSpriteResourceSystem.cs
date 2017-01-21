@@ -19,9 +19,12 @@ namespace ReUI.Implementation
         protected override void SetupAttribute(Entity<IUIPool> uiEntity, IView view, GameObject go)
         {
             var path = uiEntity.GetAttribute<Resource, string>();
-            _contentPool.Request<Sprite>(path, delegate(string p, Sprite content)
+            _contentPool.RequestSprite(path, delegate(string p, ContentReceiveResult<Sprite> result)
             {
-                go.GetComponent<Image>().sprite = content;
+                if (!result.IsError)
+                    go.GetComponent<Image>().sprite = result.Data;
+                else
+                    Debug.LogError(result.ErrorMessage);
             });
         }
 
