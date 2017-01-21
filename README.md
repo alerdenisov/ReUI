@@ -2,10 +2,10 @@
 # ReUI - Unity declarative UI system based on XML and LUA
 
 ## Core features
-- XML base UI declaration
-- LUA coding
-- Realtime reload
-- Receive remote UI
+- **XML** — declare your components same as HTML
+- **Components orientated** — focus on reusable components against repeat yourself
+- **LUA** — allows to change UI logic on a fly (or obtain it from backend!)
+- **Reactive** — listen and react and changes against updates each frame
 
 ## About ReUI
 ReUI is in active development stage as a part of huge open-source project. ReUI required [Rentitas](https://github.com/alerdenisov/Rentitas) to work. ReUI written on C# 6 and require external compiler (such as [IncrementCompiler](https://github.com/SaladLab/Unity3D.IncrementalCompiler))
