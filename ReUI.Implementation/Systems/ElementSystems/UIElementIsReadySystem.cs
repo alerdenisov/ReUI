@@ -24,13 +24,13 @@ namespace ReUI.Implementation
             if (!view.InScene())
                 return false;
 
-            var go = view.GetObject();
-
-            if (go == null)
-                return false;
-
-            if (!go.transform.parent)
-                return false;
+//            var go = view.GetObject();
+//
+//            if (go == null)
+//                return false;
+//
+//            if (!go.transform.parent)
+//                return false;
 
             return true;
         }

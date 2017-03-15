@@ -1,4 +1,5 @@
-﻿using ReUI.Implementation.Helpers;
+﻿using Assets.ReUI.Implementation.Systems.LuaSystems.Execute;
+using ReUI.Implementation.Helpers;
 using Rentitas;
 using Rentitas.Unity;
 using ReUI.Api;
@@ -80,6 +81,9 @@ namespace ReUI.Implementation
                 .Add(uiPool.CreateSystem(new SetupTextLineHeightSystem()))
                 .Add(uiPool.CreateSystem(new SetupTextAlignmentSystem()))
 
+                //text input
+                .Add(uiPool.CreateSystem(new SetupTextInputSystem()))
+
                 .Add(uiPool.CreateSystem(new SetupNestedHierarchySystem()))
                 ;
         }
@@ -92,6 +96,7 @@ namespace ReUI.Implementation
                 .Add(uiPool.CreateSystem(new ExecuteLuaPropsInjectionSystem()))
                 // Loops ones
                 .Add(uiPool.CreateSystem(new ExecuteLuaLooperPropsInjectionSystem()))
+                .Add(uiPool.CreateSystem(new ExecuteLuaEmbedPopulatePropsToScopeSystem()))
 
                 // Create root context
                 .Add(uiPool.CreateSystem(new SetupLuaScopeSystem()))
@@ -189,6 +194,9 @@ namespace ReUI.Implementation
                 .Add(uiPool.CreateSystem(new UpdateTextAlignmentSystem()))
 
                 .Add(uiPool.CreateSystem(new UpdateElementOrderSystem()))
+
+                // text input
+                .Add(uiPool.CreateSystem(new UpdateTextInputSystem()))
                 ;
         }
 

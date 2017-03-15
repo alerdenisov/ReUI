@@ -33,7 +33,7 @@ namespace ReUI.Api
 
         public ElementTable parent() => new ElementTable(_parent(), Ui);
 
-        public Rect rect2 => (ViewProvider.GetByIdentity(Element.Get<ViewLink>().Id).GetObject()?.transform as RectTransform).rect;
+        public Rect rect2 => ViewProvider.GetByIdentity(Element.Get<ViewLink>().Id).Rect;//GetRect();//.GetObject()?.transform as RectTransform).rect;
 
         public Rect rect
         {
@@ -41,14 +41,15 @@ namespace ReUI.Api
             {
                 if (!Element.Has<ViewLink>()) return default(Rect);
                 var view = ViewProvider.GetByIdentity(Element.Get<ViewLink>().Id);
+                return view.Rect;
 
-                var gameObject = view.GetObject();
-                if (!gameObject) return default(Rect);
-
-                var rectTransform = gameObject.transform as RectTransform;
-                if (!rectTransform) return default(Rect);
-
-                return rectTransform.rect;
+//                var gameObject = view.GetObject();
+//                if (!gameObject) return default(Rect);
+//
+//                var rectTransform = gameObject.transform as RectTransform;
+//                if (!rectTransform) return default(Rect);
+//
+//                return rectTransform.rect;
             }
         }
 
@@ -58,6 +59,11 @@ namespace ReUI.Api
             EnumConverter<AnchorType>.Convert(data, ref type);
             var anchor = AnchorTypeVectro4Converter.Convert(type);
             Element.SetAttribute<Anchor, Vector4>(anchor);
+        }
+
+        public void setAnchorVec4(float x, float y, float z, float w)
+        {
+            Element.SetAttribute<Anchor, Vector4>(new Vector4(x, y, z, w));
         }
 
         public void setDisabled(bool flag)

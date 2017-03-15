@@ -17,13 +17,13 @@ namespace ReUI.Implementation
         protected override Type[] AttributeTypes => new[] {typeof (Resource)};
         protected override Type[] EnsureTypes => new[] {typeof (TextureType)};
 
-        protected override void SetupAttribute(Entity<IUIPool> uiEntity, IView view, GameObject go)
+        protected override void SetupAttribute(Entity<IUIPool> uiEntity, IView view)//, GameObject go)
         {
             var path = uiEntity.GetAttribute<Resource, string>();
             _contentPool.RequestTexture(path, delegate(string p,ContentReceiveResult<Texture> result)
             {
                 if (!result.IsError)
-                    go.GetComponent<RawImage>().texture = result.Data;
+                    view.SetTexture(result.Data);//go.GetComponent<RawImage>().texture = result.Data;
                 else
                     Debug.LogError(result.ErrorMessage);
             });

@@ -32,7 +32,7 @@ namespace ReUI.Implementation.Behaviours
             var viewId = element.Get<ViewLink>().Id;
             var view = pool.Get<ViewProvider>().Value.GetByIdentity(viewId);
 
-            var beh = view.GetObject().RequireComponent<PointerEventsBehaviour>();
+            var beh = view.RequireComponent<PointerEventsBehaviour>();//.GetObject().RequireComponent<PointerEventsBehaviour>();
             beh._createViaStatic = true;
 
             beh.Pool = pool;

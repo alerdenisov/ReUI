@@ -55,10 +55,12 @@ namespace ReUI.Implementation
                     var parent = _uiPool.GetElement(entity.Get<Parent>().Id);
                     if (parent == null || !parent.Has<ViewLink>())
                         continue;
+
                     view = _viewPool.CreateChild(
                         parent.Get<ViewLink>().Id,
                         GetViewObject(entity.Get<Element>().Id)
                         , true, false);
+
 
                     view.SetActive(false);//Toggle<AOFG.View.Api.Disabled>(true);
                 }
@@ -72,6 +74,7 @@ namespace ReUI.Implementation
                     view.SetActive(false);
                 }
 
+                view.LinkTo(entity);
                 entity.Add<ViewLink>(v => v.Id = view.Id);
             }
         }

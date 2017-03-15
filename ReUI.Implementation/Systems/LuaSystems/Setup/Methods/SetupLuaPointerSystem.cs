@@ -57,14 +57,10 @@ namespace ReUI.Implementation.Systems
         {
             foreach (var entity in entities)
             {
-//                Debug.Log($"Setup pointer at {entity.GetAttribute<Name, string>()}");
                 var pointer = entity.Need<LuaCompiledPointer>();
                 var view = _view.GetByIdentity(entity.Get<ViewLink>().Id);
-                var go = view.GetObject();
-
-                var p= go.RequireComponent<LuaPointer>();
+                var p = view.RequireComponent<LuaPointer>();
                 p.Setup(_uiPool, entity.Get<Element>().Id);
-
                 var compiled = entity.GetAttribute<LuaCompiled, ILuaTable>();
                 compiled.Get(ExecutionMethod.Click.ToString(),      out pointer.OnClick);
                 compiled.Get(ExecutionMethod.MouseOver.ToString(),  out pointer.OnMouseOver);

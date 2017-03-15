@@ -10,7 +10,7 @@ namespace ReUI.Implementation
     {
         protected override Type[] AttributeTypes => new[] {typeof (SplitMode)};
 
-        protected override void SetupAttribute(Entity<IUIPool> uiEntity, IView view, GameObject go)
+        protected override void SetupAttribute(Entity<IUIPool> uiEntity, IView view)//, GameObject go)
         {
             var sprite = uiEntity.Get<Api.Graphic>().Value as Image;
             sprite.type = uiEntity.Get<SplitMode>().Value;

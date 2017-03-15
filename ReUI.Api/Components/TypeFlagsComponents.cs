@@ -15,7 +15,8 @@ namespace ReUI.Api
         Text,
         Loop,
         Hierarchy,
-        Children
+        Children,
+        TextInput
     }
 
     /// <summary>
@@ -62,4 +63,10 @@ namespace ReUI.Api
     /// Flag of container for injected hierarchy
     /// </summary>
     public class HierarchyType : IViewComponent, IFlag { }
+
+
+    /// <summary>
+    /// Flag of text input element
+    /// </summary>
+    public class TextInputType : IViewComponent, IFlag { }
 }

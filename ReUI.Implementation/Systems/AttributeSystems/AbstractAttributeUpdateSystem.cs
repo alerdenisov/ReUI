@@ -41,7 +41,7 @@ namespace ReUI.Implementation
             }
             else
             {
-                SetupAttribute(entity, view, view.GetObject());
+                SetupAttribute(entity, view);//, view.GetObject());
                 _awaiting.Remove(entity);
             }
         }
@@ -52,7 +52,7 @@ namespace ReUI.Implementation
                 TrySetup(entity);
         }
 
-        protected abstract void SetupAttribute(Entity<IUIPool> uiEntity, IView view, GameObject go);
+        protected abstract void SetupAttribute(Entity<IUIPool> uiEntity, IView view);//, GameObject go);
 
         public TriggerOnEvent Trigger => Matcher
             .AllOf(new[] { typeof (Element), typeof(ViewLink) }.Concat(EnsureTypes).ToArray())

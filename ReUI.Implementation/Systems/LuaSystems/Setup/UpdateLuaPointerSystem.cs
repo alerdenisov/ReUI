@@ -15,7 +15,7 @@ namespace ReUI.Implementation
             typeof (LuaCodeOnMouseOver)
         };
 
-        protected override void SetupAttribute(Entity<IUIPool> uiEntity, IView view, GameObject go)
+        protected override void SetupAttribute(Entity<IUIPool> uiEntity, IView view)//, GameObject go)
         {
 //            uiEntity.Need<LuaCodeBuilder>();
 //            var luaExecution = go.RequireComponent<UILuaPointer>();

@@ -10,10 +10,11 @@ namespace ReUI.Implementation
         protected override Type[] AttributeTypes => new[] {typeof (LineSpacing) };
         protected override Type[] EnsureTypes    => new[] {typeof (TextType)};
 
-        protected override void SetupAttribute(Entity<IUIPool> uiEntity, IView view, GameObject go)
+        protected override void SetupAttribute(Entity<IUIPool> uiEntity, IView view)//, GameObject go)
         {
-            var text = uiEntity.Get<Graphic>().Value as UnityEngine.UI.Text;
-            text.lineSpacing = uiEntity.Get<LineSpacing>().Value;
+            //            var text = uiEntity.Get<Graphic>().Value as UnityEngine.UI.Text;
+            //            text.lineSpacing = uiEntity.Get<LineSpacing>().Value;
+            view.SetLineHeight(uiEntity.GetAttribute<LineSpacing, float>());
         }
     }
 }

@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace ReUI.Implementation.Systems
 {
-    public class ExecuteLuaPropsInjectionSystem : ISetPool<IUIPool>, IReactiveSystem<IUIPool>
+    public class ExecuteLuaPropsInjectionSystem : ISetPool<IUIPool>, IReactiveSystem<IUIPool>, IEnsureComponents
     {
         private Group<IUIPool> _injectors;
         private Pool<IUIPool> _pool;
@@ -14,16 +14,10 @@ namespace ReUI.Implementation.Systems
 
         private void InjectFrom(Entity<IUIPool> embed)
         {
+
             var cycle = embed.Get<LuaLifeCycle>();
             var props = cycle.PropertyInjection();
             var table = _lua.ToTable(props);
-            //
-            var child = _pool.GetChildren(embed).Where(c => c.Has<ScopeType>());
-
-            foreach (var entity in child)
-            {
-                entity.SetAttribute<LuaScopeProps, ILuaTable>(table);
-            }
 
             embed.SetAttribute<LuaScopeProps, ILuaTable>(table);
             embed.Toggle<LuaScopeStateUpdate>(false);
@@ -43,13 +37,12 @@ namespace ReUI.Implementation.Systems
             }
         }
 
-        public TriggerOnEvent Trigger => Matcher
-            .AllOf(
-                typeof(Embed), 
-                typeof(LuaCodePropertiesInjection), 
-                typeof(LuaCompiled), 
-                typeof(LuaLifeCycle), 
-                typeof(LuaScopeStateUpdate))
-            .OnEntityAdded();
+        public TriggerOnEvent Trigger => Matcher.AllOf(typeof (LuaScopeStateUpdate)).OnEntityAdded();
+        
+        public IMatcher EnsureComponents => Matcher.AllOf(
+            typeof (Embed),
+            typeof (LuaCodePropertiesInjection),
+            typeof (LuaCompiled),
+            typeof (LuaLifeCycle));
     }
 }

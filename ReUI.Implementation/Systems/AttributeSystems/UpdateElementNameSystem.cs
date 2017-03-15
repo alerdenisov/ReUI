@@ -9,7 +9,7 @@ namespace ReUI.Implementation
     {
         protected override Type[] AttributeTypes => new[] {typeof (Api.Name)};
 
-        protected override void SetupAttribute(Entity<IUIPool> uiEntity, IView view, GameObject go)
+        protected override void SetupAttribute(Entity<IUIPool> uiEntity, IView view)//, GameObject go)
         {
             view.SetName(uiEntity.Get<Name>().Value);
         }

@@ -16,13 +16,14 @@ namespace ReUI.Implementation
         protected override Type[] AttributeTypes => new[] {typeof (Resource)};
         protected override Type[] EnsureTypes => new[] {typeof (SpriteType)};
 
-        protected override void SetupAttribute(Entity<IUIPool> uiEntity, IView view, GameObject go)
+        protected override void SetupAttribute(Entity<IUIPool> uiEntity, IView view)//, GameObject go)
         {
             var path = uiEntity.GetAttribute<Resource, string>();
             _contentPool.RequestSprite(path, delegate(string p, ContentReceiveResult<Sprite> result)
             {
                 if (!result.IsError)
-                    go.GetComponent<Image>().sprite = result.Data;
+//                    uiEntity.GetAttribute<Graphic, UnityEngine.UI.Graphic>().Value(go.GetComponent<Image>().sprite = result.Data);
+                    view.SetSprite(result.Data);
                 else
                     Debug.LogError(result.ErrorMessage);
             });

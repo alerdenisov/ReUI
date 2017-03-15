@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Rentitas;
+using UnityEngine;
 using ReUI.Api;
 
 namespace ReUI.Implementation.LuaSystems
@@ -14,6 +15,7 @@ namespace ReUI.Implementation.LuaSystems
         {
             foreach (var entity in entities)
             {
+                Debug.Log("Inject looper");
                 var id = entity.Get<Element>().Id;
                 var children = _uipool.GetChildren(id).ToArray();
                 var collection = entity.GetAttribute<LooperCollection, ILuaTable>();
@@ -29,6 +31,7 @@ namespace ReUI.Implementation.LuaSystems
                     {
                         var props = injection(new ElementTable(child, _uipool), keys[index++]);
                         child.SetAttribute<LuaScopeProps, ILuaTable>(_lua.ToTable(props));
+                        //child.Toggle<LuaScopeStateUpdate>(true);
                     }
                     else
                     {

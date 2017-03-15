@@ -10,10 +10,9 @@ namespace ReUI.Implementation
         protected override Type[] AttributeTypes => new[] {typeof (FontSize) };
         protected override Type[] EnsureTypes => new[] {typeof (TextType)};
 
-        protected override void SetupAttribute(Entity<IUIPool> uiEntity, IView view, GameObject go)
+        protected override void SetupAttribute(Entity<IUIPool> uiEntity, IView view)//, GameObject go)
         {
-            var text = uiEntity.Get<Graphic>().Value as UnityEngine.UI.Text;
-            text.fontSize = uiEntity.Get<FontSize>().Value;
+            view.SetFontSize(uiEntity.GetAttribute<FontSize, int>());
         }
     }
 }

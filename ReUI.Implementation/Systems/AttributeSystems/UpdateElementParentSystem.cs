@@ -12,7 +12,7 @@ namespace ReUI.Implementation
         protected override Type[] EnsureTypes => new[] {typeof (ChildrenType), typeof (Ready)};
         protected override Type[] AttributeTypes => new[] {typeof (Parent)};
 
-        protected override void SetupAttribute(Entity<IUIPool> uiEntity, IView view, GameObject go)
+        protected override void SetupAttribute(Entity<IUIPool> uiEntity, IView view)//, GameObject go)
         {
             Debug.Log($"Update parent for {uiEntity.GetAttribute<Name, string>()}");
             var parentId = uiEntity.Get<Parent>().Id;

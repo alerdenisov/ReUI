@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace ReUI.Implementation.LuaSystems
 {
-    public class ExecuteLuaScopeOnPropsSystem : IReactiveSystem<IUIPool>, ISetPool<IUIPool>
+    public class ExecuteLuaScopeOnPropsSystem : IReactiveSystem<IUIPool>, ISetPool<IUIPool>, IEnsureComponents
     {
         private Pool<IUIPool> _pool;
 
@@ -18,17 +18,13 @@ namespace ReUI.Implementation.LuaSystems
             }
         }
 
-        public TriggerOnEvent Trigger => Matcher
-            .AllOf(
-                typeof(ScopeType),
-                typeof(LuaCodeOnProps),
-                typeof(LuaScopePropsUpdate),
-                typeof(LuaLifeCycle))
-            .OnEntityAdded();
+        public TriggerOnEvent Trigger => Matcher.AllOf(typeof(LuaScopePropsUpdate)).OnEntityAdded();
 
         public void SetPool(Pool<IUIPool> typedPool)
         {
             _pool = typedPool;
         }
+
+        public IMatcher EnsureComponents => Matcher.AllOf(typeof (ScopeType), typeof (LuaCodeOnProps), typeof (LuaLifeCycle), typeof(LuaCompiled));
     }
 }

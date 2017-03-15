@@ -29,11 +29,11 @@ namespace ReUI.Integrations.View
             var parent = _views[parentId];
             var view = CreateView(prefabOrInstance, realInstance, resetTransform);
 
-            view.GetObject().transform.SetParent(parent.GetObject().transform, false);
+            view.SetParent(parent);//.GetObject().transform.SetParent(parent.GetObject().transform, false);
 
             if (resetTransform)
             {
-                view.GetObject().transform.Reset();
+                view.ResetTransform();
             }
             return view;
         }

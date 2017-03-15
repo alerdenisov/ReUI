@@ -23,10 +23,6 @@ namespace ReUI.Implementation.Systems
                 var item = entity.GetAttribute<LoopItem, string>();
                 var children = _uipool.GetChildren(id);
                 var childCount = children.Count;
-//                if (childCount > count)
-//                {
-//                    foreach (var source in children.Skip(count))
-//                        source.Toggle<Disabled>(true);
 
                 if (childCount < count)
                 {
@@ -43,41 +39,13 @@ namespace ReUI.Implementation.Systems
                     }
                 }
 
-//                foreach (var entity in children.Take(count))
-//                {
-//                    entity.Toggle<Disabled>(false);
-//                }
-
                 entity.Toggle<LuaScopeStateUpdate>(false);
                 entity.SetAttribute<LooperCollection, ILuaTable>(collection);
-//                var id = entity.Get<Element>().Id;
-//                var methods = entity.Get<LuaLooperMethods>();
-//                var collection = _lua.ToTable(methods.GetCollection());
-//                var item = entity.GetAttribute<LoopItem, string>();
-//                foreach (var key in collection.GetKeys<int>())
-//                {
-//                    var element = _uipool.CreateChild(id);//.Add<Embed>(e => e.Name = item);
-//                    element.Add<XmlElement>(xml =>
-//                    {
-//                        xml.Name = item;
-//                        xml.Attributes = new Dictionary<string, string>();
-//                        xml.Content = string.Empty;
-//                    });
-//
-//                    var table = new ElementTable(element, _uipool);
-//                    var props = methods.GetItterationProperties(table, key);
-//                    element.SetAttribute<LuaScopeProps, ILuaTable>(_lua.ToTable(props));
-//                    element.Toggle<LuaScopePropsUpdate>(true);
-//                    element.Toggle<LuaRequireCompile>(true);
-//                }
-//
-//                entity.Toggle<LuaScopePropsUpdate>(false);
             }
         }
 
         public TriggerOnEvent Trigger
-            =>
-                Matcher.AllOf(typeof (LuaScopeStateUpdate)).OnEntityAdded();
+            => Matcher.AllOf(typeof (LuaScopeStateUpdate)).OnEntityAdded();
 
         public void SetPool(Pool<IUIPool> typedPool)
         {

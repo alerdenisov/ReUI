@@ -12,13 +12,13 @@ namespace ReUI.Implementation
         protected override Type[] AttributeTypes => new[] {typeof (Resource)};
         protected override Type[] EnsureTypes => new[] {typeof (TextType) };
 
-        protected override void SetupAttribute(Entity<IUIPool> uiEntity, IView view, GameObject go)
+        protected override void SetupAttribute(Entity<IUIPool> uiEntity, IView view)//, GameObject go)
         {
             var path = uiEntity.GetAttribute<Resource, string>();
             _contentPool.RequestFont(path, delegate (string p, ContentReceiveResult<UnityEngine.Font> result)
             {
                 if (!result.IsError)
-                    go.GetComponent<UnityEngine.UI.Text>().font = result.Data;
+                    view.SetFont(result.Data);//go.GetComponent<UnityEngine.UI.Text>().font = result.Data;
                 else
                     Debug.LogError(result.ErrorMessage);
             });

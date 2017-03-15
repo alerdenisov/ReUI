@@ -28,16 +28,23 @@ namespace ReUI.Tools
         private static void DrawLuaTable(this IAttributeValue<ILuaTable> props)
         {
             GUILayout.Box(TypeName(props.GetType()) + " " + props.Value.ToString());
-            foreach (var key in props.Value.GetKeys())
+            try
             {
-                GUILayout.BeginHorizontal();
+                foreach (var key in props.Value.GetKeys())
                 {
-                    var value = props.Value[key];
-                    GUILayout.Label(key.ToString(), GUILayout.Width(80));
-                    GUILayout.Label(TypeName(value.GetType()), GUILayout.Width(100));
-                    GUILayout.Label(value.ToString());
+                    GUILayout.BeginHorizontal();
+                    {
+                        var value = props.Value[key];
+                        GUILayout.Label(key.ToString(), GUILayout.Width(80));
+                        GUILayout.Label(TypeName(value.GetType()), GUILayout.Width(100));
+                        GUILayout.Label(value.ToString());
+                    }
+                    GUILayout.EndHorizontal();
                 }
-                GUILayout.EndHorizontal();
+            }
+            catch (Exception e)
+            {
+                GUILayout.Label(e.ToString());
             }
         }
 

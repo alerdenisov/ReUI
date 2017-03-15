@@ -17,6 +17,8 @@ namespace ReUI.Implementation
             "Texture",
             "Loop",
             "Hierarchy",
+
+            "TextInput"
         };
 
         public static Dictionary<string, Elements> _standardTypes = new Dictionary<string, Elements>()
@@ -29,8 +31,9 @@ namespace ReUI.Implementation
             {"Text",        Elements.Text},
             {"Texture",     Elements.RawImage},
             {"Loop",        Elements.Loop},  
-            {"Hierarchy",   Elements.Hierarchy}
+            {"Hierarchy",   Elements.Hierarchy},
 
+            {"TextInput",   Elements.TextInput }
         };
 
         public void Execute(List<Entity<IUIPool>> entities)
@@ -65,6 +68,7 @@ namespace ReUI.Implementation
                 .Toggle<TextureType>(type == Elements.RawImage)
                 .Toggle<SpriteType>(type == Elements.Sprite)
                 .Toggle<TextType>(type == Elements.Text)
+                .Toggle<TextInputType>(type == Elements.TextInput)
                 .Toggle<HierarchyType>(type == Elements.Hierarchy)
                 .Toggle<ChildrenType>(type == Elements.Children)
                 .ReplaceInstance(viewType);

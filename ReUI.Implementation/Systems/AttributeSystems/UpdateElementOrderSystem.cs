@@ -38,7 +38,7 @@ namespace ReUI.Implementation
                 if (view == null || !view.InScene())
                     continue;
 
-                view.GetObject()?.transform.SetSiblingIndex(entity.Get<Order>().Value);
+                view.SetOrder(entity.GetAttribute<Order, int>());//.GetObject()?.transform.SetSiblingIndex(entity.Get<Order>().Value);
 //                view.GetObject().transform.SetAsLastSibling();
             }
         }
